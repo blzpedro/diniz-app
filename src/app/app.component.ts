@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'diniz-app';
+  title: any
 
   ngOnInit() {
     this.showIosInstallBanner()
@@ -21,9 +21,9 @@ export class AppComponent implements OnInit {
     };
 
     if (isIos()) {
-      alert('ta no iOS, update')
+      this.title = 'eh iOS'
     } else {
-      alert('não ta no iOS, update')
+      this.title = 'não eh iOS'
     }
   }
 }
