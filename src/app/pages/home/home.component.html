@@ -1,32 +1,35 @@
-<form>
-	<div class="login-container">
-		<div class="login-content">
-			<mat-toolbar class="login-toolbar" color="primary">Recipe Book</mat-toolbar>
-			<mat-card>
-				<form [formGroup]="loginForm" (submit)="onSubmit(loginForm)" >
-					<mat-form-field>
-						<mat-icon matPrefix>person_outline</mat-icon>
-						<input autofocus type="text" matInput placeholder="Username" formControlName="email">
-					</mat-form-field>
-
-					<mat-form-field>
-						<mat-icon matPrefix>lock_outline</mat-icon>
-						<input type="password" autocomplete="false" matInput placeholder="Password"  formControlName="password">
-					</mat-form-field>
-
-					<button type="submit" mat-raised-button color="primary">LOGIN</button>
-        </form>
-					<mat-toolbar class="login-toolbar" style="background-color:white">login with</mat-toolbar>
-					<div class="socialMediaFlex">
-						<button mat-fab color="primary"><i class="fab fa-facebook-f"></i></button>
-						<button mat-fab color="accent"><i class="fab fa-google"></i></button>
-					</div>
-          <br>
-          <span> If You don't have a account yet please <a routerLink ='/register'>REGISTER HERE</a></span>
-
-
-
-				
-			</mat-card>
-		</div>
-	</div>
+<div class="container h-100vh">
+    <div class="row m-0 align-items-center">
+        <div class="col-lg-8 col-x-8 col-sm-12">
+            <img src="../../../assets/logo.png" class="w-100" alt="">
+        </div>
+        <div class="col-lg-4 col-x-4 col-sm-12">
+            <div class="login-container">
+                <div class="login-content">
+                    <mat-toolbar class="login-toolbar" color="primary">Diniz Barber</mat-toolbar>
+                    <mat-card>
+                    <form [formGroup]="loginForm" (submit)="onSubmit(loginForm)">
+                        <mat-form-field>
+                        <mat-icon matPrefix>person_outline</mat-icon>
+                        <input autofocus type="text" matInput placeholder="Usuário" formControlName="email">
+                        </mat-form-field>
+                
+                        <mat-form-field>
+                        <mat-icon matPrefix>lock_outline</mat-icon>
+                        <input type="password" autocomplete="false" matInput placeholder="Senha" formControlName="password">
+                        </mat-form-field>
+                
+                        <button type="submit" mat-raised-button color="primary">Entrar</button>
+                    </form>
+                    <mat-toolbar class="login-toolbar" style="background-color:white">Ou entre com</mat-toolbar>
+                    <div class="socialMediaFlex">
+                        <button mat-fab color="primary"><i class="fab fa-facebook-f"></i></button>
+                        <button mat-fab color="accent"><i class="fab fa-google"></i></button>
+                    </div>
+                    <br>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
