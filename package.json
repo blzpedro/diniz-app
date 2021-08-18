@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "start-pwa": "ng build --prod && http-server -p 4200 -c-1 dist/angular-pwa"
+    "start-pwa": "ng build --prod && http-server -p 4200 -c-1 dist/angular-pwa",
+    "build-pwa": "ng build --prod && http-server www -c-1 dist/angular-pwa"
   },
   "private": true,
   "dependencies": {
