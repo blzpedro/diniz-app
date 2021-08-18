@@ -111,11 +111,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         BrowserAnimationsModule
     ],
     providers: [
-    ]
+    ],
+    declarations: []
 })
 export class SharedModule {
     constructor(public matIconRegistry: MatIconRegistry) {
-        // matIconRegistry.registerFontClassAlias('fontawesome', 'fa');
+        matIconRegistry.registerFontClassAlias('fontawesome', 'fa');
     }
 
     static forRoot(): ModuleWithProviders<SharedModule> {
