@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { FirebaseService } from 'src/app/services/firebase.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +11,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class HomeComponent implements OnInit {
   loginForm: FormGroup;
-  constructor() { }
+  signIn = true
+  user: any
+  constructor(private firebaseService: FirebaseService, private router: Router, private userService: UserService) { }
 
   ngOnInit() {
     this.createForm();
@@ -21,9 +26,23 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  onSubmit(formData: FormGroup) {
-    const email = formData.value.email;
-    const password = formData.value.password;
-    console.log(email, password);
+  async onSubmit() {
+    let { email, password } = this.loginForm.value
+    try {
+      if (this.signIn) {
+        this.user = await this.firebaseService.signIn(email, password).then(res => this.user = res.user)
+      } else {
+        this.user = await this.firebaseService.signUp(email, password).then(res => this.user = res.user)
+        await this.userService.addUser({ ...this.user, password })
+      }
+      this.success()
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  success() {
+    localStorage.setItem('user', JSON.stringify(this.user))
+    this.router.navigate(['/calendar'])
   }
 }

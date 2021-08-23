@@ -1,6 +1,7 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
+@import 'variables.scss';
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -51,4 +52,20 @@ body {
 
 .h-100vh {
   height: 100vh;
+}
+
+.primary-color {
+  color: var(--primary-color) !important;
+}
+
+.secondary-color {
+  color: var(--secondary-color) !important;
+}
+
+.primary-bg-color {
+  background-color: var(--primary-color) !important;
+}
+
+.secondary-bg-color {
+  background-color: var(--secondary-color) !important;
 }

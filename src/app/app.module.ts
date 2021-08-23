@@ -10,12 +10,25 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { PagesModule } from './pages/pages.module';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireFunctionsModule } from '@angular/fire/functions';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { FirebaseService } from './services/firebase.service';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    AngularFireStorageModule,
+    AngularFireMessagingModule,
+    AngularFireFunctionsModule,
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule,
@@ -28,7 +41,7 @@ import { PagesModule } from './pages/pages.module';
       registrationStrategy: 'registerWhenStable:30000'
     }),
   ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, FirebaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
