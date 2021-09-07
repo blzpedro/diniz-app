@@ -69,3 +69,23 @@ body {
 .secondary-bg-color {
   background-color: var(--secondary-color) !important;
 }
+
+.snackbar{
+  .mat-simple-snackbar-action{
+    width: 100% !important;
+    color: white !important;
+    button{
+      width: 100% !important;
+      text-align: left !important;
+    }
+  }
+}
+
+.success-snackbar{
+  background-color: green;
+}
+
+.error-snackbar{
+  background-color: red;
+}
+

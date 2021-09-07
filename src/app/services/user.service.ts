@@ -10,11 +10,9 @@ import { User } from '../models/user.interface';
 export class UserService {
   constructor(private firestore: AngularFirestore) { }
 
-  // SS2R8vmWTvgzGNM8GJ4KosPWfyI3
-  // const snapshot = await this.firestore.collection('users').get()
-  addUser(user: any): any {
+  addUser(user: User): any {
     let id = this.firestore.createId();
-    return this.firestore.collection('users').doc(id).set({ email: user.email, uid: user.uid, password: user.password });
+    return this.firestore.collection('users').doc(id).set({ email: user.email, uid: user.uid, password: user.password, phone: user.phone, admin: user.admin });
   }
 
   async getUserById$(userId: string): Promise<any> {

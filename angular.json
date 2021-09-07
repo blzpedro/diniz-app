@@ -130,5 +130,8 @@
       "style": "scss",
       "skipTests": true
     }
+  },
+  "cli": {
+    "analytics": "de12c7a1-f730-480b-b7be-eac0b435aa05"
   }
 }

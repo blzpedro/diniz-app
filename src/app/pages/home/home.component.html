@@ -11,26 +11,26 @@
                         <mat-toolbar class="login-toolbar" *ngIf="!signIn">Cadastro</mat-toolbar>
                         <form [formGroup]="loginForm" (submit)="onSubmit()">
                             <mat-form-field>
-                            <mat-icon matPrefix>person_outline</mat-icon>
-                            <input autofocus type="text" matInput placeholder="E-mail" formControlName="email">
+                                <mat-icon matPrefix class="form-icon">person_outline</mat-icon>
+                                <input autofocus type="text" matInput placeholder="E-mail" formControlName="email">
                             </mat-form-field>
                     
                             <mat-form-field>
-                            <mat-icon matPrefix>lock_outline</mat-icon>
-                            <input type="password" autocomplete="false" matInput placeholder="Senha" formControlName="password">
+                                <mat-icon matPrefix class="form-icon">lock_outline</mat-icon>
+                                <input type="password" autocomplete="false" matInput placeholder="Senha" formControlName="password">
+                            </mat-form-field>
+                    
+                            <mat-form-field *ngIf="!signIn">
+                                <mat-icon matPrefix class="form-icon">phone</mat-icon>
+                                <input mask="(00) 90000-0000" type="text" autocomplete="false" matInput placeholder="Celular" formControlName="phone">
                             </mat-form-field>
                     
                             <button type="submit" mat-raised-button color="primary">Confirmar</button>
                         </form>
-                        <button type="submit" mat-raised-button color="primary" class="secondary-bg-color" *ngIf="signIn" 
+                        <button type="submit" mat-raised-button color="warn" *ngIf="signIn" 
                         (click)="signIn = false;loginForm.reset()">Cadastre-se</button>
-                        <button type="submit" mat-raised-button color="primary" class="secondary-bg-color" *ngIf="!signIn" 
+                        <button type="submit" mat-raised-button color="warn" *ngIf="!signIn" 
                         (click)="signIn = true;loginForm.reset()">Voltar</button>
-                    <!-- <mat-toolbar class="login-toolbar" style="background-color:white">Ou entre com</mat-toolbar>
-                    <div class="socialMediaFlex">
-                        <button mat-fab color="primary"><i class="fab fa-facebook-f"></i></button>
-                        <button mat-fab color="accent"><i class="fab fa-google"></i></button>
-                    </div> -->
                     <br>
                     </mat-card>
                 </div>

@@ -1,0 +1,9 @@
+<div>
+    <h2>{{data.title}}</h2>
+    <p>{{data.message}}</p>
+    <div class="d-flex box-btns">
+        <ng-container *ngFor="let option of data.btnOptions">
+            <button mat-raised-button [color]="option.color" (click)="option.fn(); dialogRef.close();">{{option.text}}</button>
+        </ng-container>
+    </div>
+</div>

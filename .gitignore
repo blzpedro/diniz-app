@@ -47,3 +47,4 @@ Thumbs.db
 
 /src/environments/*
 /src/firebase-sw.js
+/functions/node_modules

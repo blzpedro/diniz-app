@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UserService } from 'src/app/services/user.service';
+import { UtilsClass } from 'src/app/shared/utils';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ export class HomeComponent implements OnInit {
   loginForm: FormGroup;
   signIn = true
   user: any
-  constructor(private firebaseService: FirebaseService, private router: Router, private userService: UserService) { }
+  constructor(private firebaseService: FirebaseService, private router: Router, private userService: UserService, private utils: UtilsClass) { }
 
   ngOnInit() {
     this.createForm();
@@ -22,18 +23,21 @@ export class HomeComponent implements OnInit {
   createForm() {
     this.loginForm = new FormGroup({
       'email': new FormControl(null),
-      'password': new FormControl(null)
+      'password': new FormControl(null),
+      'phone': new FormControl(null)
     })
   }
 
   async onSubmit() {
-    let { email, password } = this.loginForm.value
+    let { email, password, phone } = this.loginForm.value
+    let admin = true
     try {
       if (this.signIn) {
         this.user = await this.firebaseService.signIn(email, password).then(res => this.user = res.user)
       } else {
+        this.signInSuccess()
         this.user = await this.firebaseService.signUp(email, password).then(res => this.user = res.user)
-        await this.userService.addUser({ ...this.user, password })
+        await this.userService.addUser({ ...this.user, password, phone, admin})
       }
       this.success()
     } catch (e) {
@@ -44,5 +48,9 @@ export class HomeComponent implements OnInit {
   success() {
     localStorage.setItem('user', JSON.stringify(this.user))
     this.router.navigate(['/calendar'])
+  }
+
+  signInSuccess() {    
+    this.utils.openSnackBar('Conta criada com sucesso.', 'success')
   }
 }

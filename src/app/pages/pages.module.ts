@@ -5,18 +5,22 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PagesRoutingModule } from './pages-routing.module';
 import { HomeComponent } from './home/home.component';
+import { NgxMaskModule } from 'ngx-mask';
+import { ComponentsModule } from './../components/components.module';
 
 @NgModule({
   declarations: [
     HomeComponent
   ],
   imports: [
-    CommonModule,
+  CommonModule,
     PagesRoutingModule,
     SharedModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot(),
+    ComponentsModule
   ],
 
   entryComponents: [
