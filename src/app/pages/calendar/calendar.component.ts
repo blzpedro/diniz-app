@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { take } from 'rxjs/operators';
 import { DialogColors } from 'src/app/models/dialog.interface';
+import { CalendarService } from 'src/app/services/calendar.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsClass } from 'src/app/shared/utils';
 
@@ -11,19 +13,25 @@ import { UtilsClass } from 'src/app/shared/utils';
 })
 export class CalendarComponent implements OnInit {
 
-  constructor(private firebaseService: FirebaseService, private router: Router, private utils: UtilsClass) { }
+  constructor(private firebaseService: FirebaseService, private router: Router, private utils: UtilsClass, private calendarService: CalendarService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.getDays()
   }
 
-  openDialog(){    
+  async getDays(): Promise<any> {
+    let res = await this.calendarService.getDays().pipe(take(1)).toPromise()
+    console.log(res)
+  }
+
+  openDialog() {
     this.utils.openDialog('Deseja sair?', '', 'sm', [
-      { 
+      {
         text: 'Sim',
         fn: () => this.logout(),
         color: DialogColors.PRIMARY
       },
-      { 
+      {
         text: 'Não',
         fn: () => null,
         color: DialogColors.WARN
@@ -31,7 +39,7 @@ export class CalendarComponent implements OnInit {
     ])
   }
 
-  logout() {    
+  logout() {
     this.firebaseService.logout()
     localStorage.removeItem('user')
     this.router.navigate(['/'])

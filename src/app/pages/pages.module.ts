@@ -7,13 +7,14 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { HomeComponent } from './home/home.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { ComponentsModule } from './../components/components.module';
+import { HttpService } from '../services/http.service';
 
 @NgModule({
   declarations: [
     HomeComponent
   ],
   imports: [
-  CommonModule,
+    CommonModule,
     PagesRoutingModule,
     SharedModule,
     FormsModule,
@@ -26,7 +27,10 @@ import { ComponentsModule } from './../components/components.module';
   entryComponents: [
   ],
 
-  providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }]
+  providers: [
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    HttpService
+  ]
 
 })
 export class PagesModule { }

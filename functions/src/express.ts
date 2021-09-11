@@ -1,14 +1,14 @@
 import express from 'express';
-import * as admin from 'firebase-admin';
-import * as moment from 'moment';
-
-const https = require('https');
+import cors from 'cors';
+import admin from 'firebase-admin';
+import moment from 'moment';
 
 export const app = express();
+app.use(cors({ origin: true }));
 app.use(express.json());
 
 app.get('/teste', ((req, res) => {
-  res.status(200).send('teste retorno teste');
+  res.status(200).send({ res: 'Sucesso' });
 }));
 
 // error handler
