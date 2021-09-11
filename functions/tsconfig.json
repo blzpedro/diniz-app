@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitReturns": true,
+    "experimentalDecorators": true,
+    "noUnusedLocals": false,
+    "outDir": "lib",
+    "sourceMap": true,
+    "strict": false,
+    "target": "es2017",
+    "lib": [
+      "es2019",
+      "dom"
+    ],
+    "esModuleInterop": true
+  },
+  "compileOnSave": true,
+  "files": [
+    "src/index.ts"
+  ],
+  "plugins": [
+    {
+      "name": "typescript-tslint-plugin"
+    }
+  ]
+}

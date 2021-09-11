@@ -1,0 +1,32 @@
+{
+  "name": "functions",
+  "scripts": {
+    "build": "copyfiles -u 1 src/ lib/functions/src/ && tsc",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "serve-local": "nodemon --watch src/ --exec \"ts-node src/local-server.ts\""
+  },
+  "engines": {
+    "node": "10"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "firebase-admin": "^9.11.1",
+    "firebase-functions": "^3.15.5",
+    "moment": "^2.29.1",
+    "ts-polyfill": "^3.8.2",
+    "cors": "^2.8.5",
+    "body-parser": "^1.19.0"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.2",
+    "@types/cors": "^2.8.10",
+    "@types/node": "^14.14.35",
+    "copyfiles": "^2.4.1",
+    "firebase-functions-test": "^0.2.0",
+    "nodemon": "^2.0.7",
+    "ts-node": "^9.1.1",
+    "tslint": "^5.12.0",
+    "typescript": "^4.2.3"
+  }
+}
