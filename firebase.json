@@ -7,7 +7,7 @@
   },
   "hosting": {
     "predeploy": [
-      "npm run build"
+      "npm run build:prod"
     ],
     "public": "dist/diniz-app",
     "ignore": [
