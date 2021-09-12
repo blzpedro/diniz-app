@@ -1,0 +1,11 @@
+<div class="drawer">
+    <mat-drawer-container class="drawer-container" autosize>  
+        <mat-drawer #drawer class="drawer-sidenav" mode="side">
+            <p>Menu</p>
+        </mat-drawer>
+        <div class="sidenav-content">
+            <app-header (toggle)="drawer.toggle()"></app-header>
+        </div>  
+        <router-outlet></router-outlet>
+    </mat-drawer-container>    
+</div>

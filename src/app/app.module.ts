@@ -20,7 +20,7 @@ import { FirebaseService } from './services/firebase.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

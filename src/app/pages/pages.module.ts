@@ -8,10 +8,14 @@ import { HomeComponent } from './home/home.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { ComponentsModule } from './../components/components.module';
 import { HttpService } from '../services/http.service';
+import { AdminComponent } from './admin/admin.component';
+import { AdminManagementComponent } from './admin/admin-management/admin-management.component';
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    AdminComponent,
+    AdminManagementComponent
   ],
   imports: [
     CommonModule,
