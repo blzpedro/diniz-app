@@ -10,10 +10,12 @@ import { ComponentsModule } from './../components/components.module';
 import { HttpService } from '../services/http.service';
 import { AdminComponent } from './admin/admin.component';
 import { AdminManagementComponent } from './admin/admin-management/admin-management.component';
+import { CalendarComponent } from './common/calendar/calendar.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
+    CalendarComponent,
     AdminComponent,
     AdminManagementComponent
   ],

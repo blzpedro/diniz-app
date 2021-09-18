@@ -11,7 +11,7 @@ export class CalendarService {
 
   constructor(private http: HttpService) { }
 
-  getDays(): Observable<any> {
-    return this.http.get<any>(`${environment.apiUrl}/teste`);
+  getDays({ email }: any): Observable<any> {
+    return this.http.get<any>(`${environment.apiUrl}/teste?user=${email}`);
   }
 }

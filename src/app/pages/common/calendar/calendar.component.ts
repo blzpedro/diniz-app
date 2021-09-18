@@ -16,12 +16,12 @@ export class CalendarComponent implements OnInit {
   constructor(private firebaseService: FirebaseService, private router: Router, private utils: UtilsClass, private calendarService: CalendarService) { }
 
   ngOnInit() {
-    this.getDays()
+    // this.getDays()
   }
 
   async getDays(): Promise<any> {
-    let res = await this.calendarService.getDays().pipe(take(1)).toPromise()
-    console.log(res)
+    let user = localStorage.getItem('user');
+    let res = await this.calendarService.getDays(user).pipe(take(1)).toPromise()
   }
 
   openDialog() {
