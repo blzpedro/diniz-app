@@ -4,4 +4,5 @@ export interface User {
     uid: string
     phone: string
     admin: boolean
+    accessToken: string
 }

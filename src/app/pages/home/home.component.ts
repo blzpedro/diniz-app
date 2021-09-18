@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { first } from 'rxjs/operators';
+import { User } from 'src/app/models/user.interface';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UserService } from 'src/app/services/user.service';
 import { UtilsClass } from 'src/app/shared/utils';
@@ -12,9 +14,16 @@ import { UtilsClass } from 'src/app/shared/utils';
 })
 export class HomeComponent implements OnInit {
   loginForm: FormGroup;
-  signIn = true
+  signIn = false
   user: any
-  constructor(private firebaseService: FirebaseService, private router: Router, private userService: UserService, private utils: UtilsClass) { }
+  userWithToken: User
+  accessToken: string
+
+  constructor(
+    private firebaseService: FirebaseService,
+    private router: Router,
+    private userService: UserService,
+    private utils: UtilsClass) { }
 
   ngOnInit() {
     this.createForm();
@@ -35,24 +44,36 @@ export class HomeComponent implements OnInit {
       if (this.signIn) {
         this.user = await this.firebaseService.signIn(email, password).then(res => this.user = res.user)
       } else {
-        this.signUpSuccess()
-        this.user = await this.firebaseService.signUp(email, password).then(res => this.user = res.user)
-        this.user = { ...this.user, password, phone, admin }
-        await this.userService.addUser(this.user)
+        await this.signUpUser(email, password, phone, admin)
       }
       this.success()
     } catch (e) {
+      this.error(e.message)
       console.log(e)
     }
   }
 
-  async success() {
-    let user = await this.userService.getUserById$(this.user.uid)
-    localStorage.setItem('user', JSON.stringify(user))
+  async signUpUser(email, password, phone, admin) {
+    this.user = await this.firebaseService.signUp(email, password).then(res => this.user = res.user)
+    this.user = { ...this.user, password, phone, admin }
+
+    this.userWithToken = await this.userService.generateAccessToken(this.user).pipe(first()).toPromise()
+
+    await this.userService.addUser(this.userWithToken)
+    this.signUpSuccess()
+  }
+
+  success() {
+    localStorage.setItem('accessToken', this.userWithToken.accessToken)
     this.router.navigate(['/calendar'])
+  }
+
+  error(message: string) {
+    this.utils.openSnackBar(message, 'error')
   }
 
   signUpSuccess() {
     this.utils.openSnackBar('Conta criada com sucesso.', 'success')
   }
+
 }
