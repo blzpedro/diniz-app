@@ -13,15 +13,15 @@ export class AuthenticationService {
 
   constructor(private firebaseAuth: AngularFireAuth, private userService: UserService) {
     this.authenticatedUser = this.firebaseAuth.authState.pipe(
-      switchMap((user) => {
+      switchMap(async user => {
         if (user) {
-          this.uid = user.uid;
-          return this.userService.getUserById$(user.uid);
+          this.uid = user.uid
+          return await this.userService.getUserById$(user.uid)
         }
 
         return of(null);
       }),
-    );
+    )
   }
 
 }

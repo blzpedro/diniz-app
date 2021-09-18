@@ -8,3 +8,4 @@ typings/
 lib/
 lib/**
 node_modules/
+.env

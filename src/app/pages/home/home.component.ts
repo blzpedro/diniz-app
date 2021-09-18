@@ -35,9 +35,10 @@ export class HomeComponent implements OnInit {
       if (this.signIn) {
         this.user = await this.firebaseService.signIn(email, password).then(res => this.user = res.user)
       } else {
-        this.signInSuccess()
+        this.signUpSuccess()
         this.user = await this.firebaseService.signUp(email, password).then(res => this.user = res.user)
-        await this.userService.addUser({ ...this.user, password, phone, admin})
+        this.user = { ...this.user, password, phone, admin }
+        await this.userService.addUser(this.user)
       }
       this.success()
     } catch (e) {
@@ -45,12 +46,13 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  success() {
-    localStorage.setItem('user', JSON.stringify(this.user))
+  async success() {
+    let user = await this.userService.getUserById$(this.user.uid)
+    localStorage.setItem('user', JSON.stringify(user))
     this.router.navigate(['/calendar'])
   }
 
-  signInSuccess() {    
+  signUpSuccess() {
     this.utils.openSnackBar('Conta criada com sucesso.', 'success')
   }
 }
