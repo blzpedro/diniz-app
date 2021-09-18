@@ -16,7 +16,7 @@ export class AuthenticationService {
       switchMap(async user => {
         if (user) {
           this.uid = user.uid
-          return await this.userService.getUserById$(user.uid)
+          return await this.userService.getUserById(user.uid)
         }
 
         return of(null);

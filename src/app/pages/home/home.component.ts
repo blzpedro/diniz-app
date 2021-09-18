@@ -14,7 +14,7 @@ import { UtilsClass } from 'src/app/shared/utils';
 })
 export class HomeComponent implements OnInit {
   loginForm: FormGroup;
-  signIn = false
+  signIn = true
   user: any
   userWithToken: User
   accessToken: string
@@ -42,7 +42,8 @@ export class HomeComponent implements OnInit {
     let admin = true
     try {
       if (this.signIn) {
-        this.user = await this.firebaseService.signIn(email, password).then(res => this.user = res.user)
+        let userId = await this.firebaseService.signIn(email, password).then(res => res.user.uid)
+        this.userWithToken = await this.userService.getUserById(userId)
       } else {
         await this.signUpUser(email, password, phone, admin)
       }

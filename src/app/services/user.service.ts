@@ -16,9 +16,9 @@ export class UserService {
     return this.firestore.collection('users').doc(user.uid).set({ email: user.email, uid: user.uid, password: user.password, phone: user.phone, admin: user.admin, accessToken: user.accessToken });
   }
 
-  async getUserById$(userId: string): Promise<User | {}> {
+  async getUserById(userId: string): Promise<User> {
     let user = await this.firestore.collection('users').doc(userId).ref.get().then(user => user.data()).catch(error => error);
-    return user
+    return user as User
   }
 
   generateAccessToken({ email, password, phone, admin, uid }): Observable<User> {
