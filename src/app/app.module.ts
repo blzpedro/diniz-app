@@ -17,6 +17,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { FirebaseService } from './services/firebase.service';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { FirebaseService } from './services/firebase.service';
     SharedModule,
     AppRoutingModule,
     PagesModule,
+    ComponentsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable

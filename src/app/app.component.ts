@@ -1,8 +1,15 @@
 import { Component } from '@angular/core';
+import { LoaderService } from './services/loader.service';
+import { UtilsClass } from './shared/utils';
 @Component({
   selector: 'app-root',
-  template: `<router-outlet></router-outlet>`
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Diniz Barber';
+  loading$ = this.loader.loading
+
+  constructor(public loader: LoaderService) {
+
+  }
 }

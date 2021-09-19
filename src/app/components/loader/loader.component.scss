@@ -1,0 +1,75 @@
+.loader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  z-index: 99;
+  height: 100%;
+  background-color: #6f6f6fd1;
+
+  img {
+    width: 150px;
+    height: 150px;
+    transform-style: preserve-3d;
+    animation-name: pulse;
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+  }
+
+  p {
+    font-weight: 400;
+    font-size: 30px;
+    transform-style: preserve-3d;
+    animation-name: pulse;
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  10% {
+    transform: scale(1.1);
+  }
+
+  20% {
+    transform: scale(1);
+  }
+
+  30% {
+    transform: scale(1.1);
+  }
+
+  40% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  60% {
+    transform: scale(1);
+  }
+
+  70% {
+    transform: scale(1.1);
+  }
+
+  80% {
+    transform: scale(1);
+  }
+
+  90% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

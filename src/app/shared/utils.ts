@@ -1,11 +1,14 @@
-import { Component, Inject, Injectable } from '@angular/core';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Component, Inject, Injectable, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DialogComponent } from '../components/dialog/dialog.component';
+import { LoaderComponent } from '../components/loader/loader.component';
 import { DialogButtonOptions } from '../models/dialog.interface';
 
 @Injectable({ providedIn: 'root' })
 export class UtilsClass {
+
   constructor(private _snackBar: MatSnackBar, public dialog: MatDialog) { }
 
   openSnackBar(message: string, type: string) {

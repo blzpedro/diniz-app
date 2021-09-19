@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { User } from 'src/app/models/user.interface';
 import { FirebaseService } from 'src/app/services/firebase.service';
+import { LoaderService } from 'src/app/services/loader.service';
 import { UserService } from 'src/app/services/user.service';
 import { UtilsClass } from 'src/app/shared/utils';
 
@@ -23,7 +24,9 @@ export class HomeComponent implements OnInit {
     private firebaseService: FirebaseService,
     private router: Router,
     private userService: UserService,
-    private utils: UtilsClass) { }
+    private utils: UtilsClass,
+    private loader: LoaderService
+  ) { }
 
   ngOnInit() {
     this.createForm();
@@ -31,8 +34,8 @@ export class HomeComponent implements OnInit {
 
   createForm() {
     this.loginForm = new FormGroup({
-      'email': new FormControl(null),
-      'password': new FormControl(null),
+      'email': new FormControl("pedro@pedro.com"),
+      'password': new FormControl("pedro123"),
       'phone': new FormControl(null)
     })
   }
@@ -40,6 +43,7 @@ export class HomeComponent implements OnInit {
   async onSubmit() {
     let { email, password, phone } = this.loginForm.value
     let admin = true
+    this.loader.show()
     try {
       if (this.signIn) {
         let userId = await this.firebaseService.signIn(email, password).then(res => res.user.uid)
@@ -52,6 +56,7 @@ export class HomeComponent implements OnInit {
       this.error(e.message)
       console.log(e)
     }
+    this.loader.dismiss()
   }
 
   async signUpUser(email, password, phone, admin) {
