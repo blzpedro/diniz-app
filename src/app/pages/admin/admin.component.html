@@ -2,10 +2,19 @@
     <div class="logo-bg h-100">
         <mat-drawer-container class="drawer-container" autosize>  
             <mat-drawer #drawer class="drawer-sidenav" mode="side">
-                <div class="d-flex flex-column">
-                    <a routerLink="/admin">Admin</a>
-                    <a routerLink="management">Gerenciar</a>
-                    <a (click)="openDialogLogout()">Sair</a>
+                <div class="d-flex flex-column options">
+                    <a routerLink="/admin">
+                        <i class="fas fa-user-tie"></i>
+                        Admin
+                    </a>
+                    <a routerLink="management">
+                        <i class="fas fa-user-cog"></i>
+                        Gerenciar
+                    </a>
+                    <a (click)="openDialogLogout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Sair
+                    </a>
                 </div>
             </mat-drawer>
             <div class="sidenav-content">
