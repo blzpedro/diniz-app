@@ -1,15 +1,21 @@
 <div class="drawer">
-    <mat-drawer-container class="drawer-container" autosize>  
-        <mat-drawer #drawer class="drawer-sidenav" mode="side">
-            <div class="d-flex flex-column">
-                <a routerLink="/admin">Admin</a>
-                <a routerLink="management">Management</a>
-                <a (click)="openDialogLogout()">Sair</a>
-            </div>
-        </mat-drawer>
-        <div class="sidenav-content">
-            <app-header (toggle)="drawer.toggle()"></app-header>
-        </div>  
-        <router-outlet></router-outlet>
-    </mat-drawer-container>    
+    <div class="logo-bg h-100">
+        <mat-drawer-container class="drawer-container" autosize>  
+            <mat-drawer #drawer class="drawer-sidenav" mode="side">
+                <div class="d-flex flex-column">
+                    <a routerLink="/admin">Admin</a>
+                    <a routerLink="management">Gerenciar</a>
+                    <a (click)="openDialogLogout()">Sair</a>
+                </div>
+            </mat-drawer>
+            <div class="sidenav-content">
+                <div class="d-flex">
+                    <app-header (toggle)="drawer.toggle()"></app-header>
+                    <h1 class="justify-self-center mx-auto mt-1">Área do admin</h1>
+                </div>
+    
+                <router-outlet></router-outlet>
+            </div>  
+        </mat-drawer-container>    
+    </div>
 </div>

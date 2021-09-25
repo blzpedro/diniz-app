@@ -1,0 +1,43 @@
+.calendar-input {
+  ::ng-deep .mat-form-field-flex {
+    align-items: center;
+    padding: 0.5rem 0.75rem 0 0.75rem;
+  }
+}
+
+.schedule-table {
+  ::ng-deep tbody {
+    text-align: left;
+  }
+}
+
+.delete {
+  width: 15px;
+  padding-right: 24px;
+
+  .delete-icon {
+    color: red;
+    cursor: pointer;
+  }
+}
+
+.add-schedule {
+  margin-bottom: 10px;
+
+  .schedule-input {
+    border-bottom: 2px solid lightgray;
+    margin: 0 20px;
+    text-align: left;
+    height: 50px;
+    align-items: center;
+
+    input {
+      height: 100%
+    }
+  }
+
+  .add-icon {
+    color: green;
+    cursor: pointer;
+  }
+}
