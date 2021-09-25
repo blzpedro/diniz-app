@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule } from './pages/shared.module';
+import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +18,9 @@ import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { FirebaseService } from './services/firebase.service';
 import { ComponentsModule } from './components/components.module';
+import { HttpClientModule } from '@angular/common/http';
+import { NgxMaskModule } from 'ngx-mask';
+import { HttpService } from './services/http.service';
 
 @NgModule({
   declarations: [
@@ -33,17 +36,21 @@ import { ComponentsModule } from './components/components.module';
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule,
-    AppRoutingModule,
-    PagesModule,
     ComponentsModule,
+    AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot(),
   ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, FirebaseService],
+  exports: [SharedModule],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, FirebaseService, HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { of } from 'rxjs';
 import { switchMap, } from 'rxjs/operators';
 import { UserService } from './user.service';
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ import { UserService } from './user.service';
 export class AuthenticationService {
   authenticatedUser: any
   uid: any
+  jwt = new JwtHelperService();
 
   constructor(private firebaseAuth: AngularFireAuth, private userService: UserService) {
     this.authenticatedUser = this.firebaseAuth.authState.pipe(
@@ -22,6 +24,10 @@ export class AuthenticationService {
         return of(null);
       }),
     )
+  }
+
+  decodeAccessToken(accessToken: string) {
+    return this.jwt.decodeToken(accessToken)
   }
 
 }

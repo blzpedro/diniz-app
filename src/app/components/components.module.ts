@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, LOCALE_ID } from '@angular/core';
-import { SharedModule } from '../pages/shared.module';
+import { SharedModule } from '../shared/shared.module';
 import { DialogComponent } from './dialog/dialog.component';
 import { HeaderComponent } from './header/header.component';
 import { LoaderComponent } from './loader/loader.component';
@@ -14,7 +14,8 @@ import { LoaderComponent } from './loader/loader.component';
   exports: [
     DialogComponent,
     HeaderComponent,
-    LoaderComponent
+    LoaderComponent,
+    SharedModule
   ],
   imports: [
     CommonModule,

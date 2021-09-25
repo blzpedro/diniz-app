@@ -71,7 +71,7 @@ export class HomeComponent implements OnInit {
 
   success() {
     localStorage.setItem('accessToken', this.userWithToken.accessToken)
-    this.router.navigate(['/calendar'])
+    this.router.navigate(['/user'])
   }
 
   error(message: string) {

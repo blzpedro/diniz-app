@@ -3,7 +3,7 @@ import {
   Router, CanActivate,
 } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { AuthenticationService } from './authentication.service';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +13,7 @@ export class LoginGuard implements CanActivate {
 
   async canActivate(): Promise<boolean> {
     const user = await this.authenticationService.authenticatedUser.pipe(first()).toPromise();
+    // user.accessToken = await this.authenticationService.
     if (!user) {
       this.router.navigate(['/']);
     }
