@@ -24,7 +24,7 @@ export class CalendarComponent implements OnInit {
     let res = await this.calendarService.getDays(user).pipe(take(1)).toPromise()
   }
 
-  openDialog() {
+  openDialogLogout() {
     this.utils.openDialog('Deseja sair?', '', 'sm', [
       {
         text: 'Sim',
@@ -41,7 +41,6 @@ export class CalendarComponent implements OnInit {
 
   logout() {
     this.firebaseService.logout()
-    this.router.navigate(['/'])
   }
 
 

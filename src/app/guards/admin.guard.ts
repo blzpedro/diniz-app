@@ -9,7 +9,7 @@ import { AuthenticationService } from '../services/authentication.service';
 @Injectable({
   providedIn: 'root',
 })
-export class UserGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
   constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   async canActivate(): Promise<boolean> {
@@ -18,8 +18,8 @@ export class UserGuard implements CanActivate {
       this.router.navigate(['/']);
     }
 
-    if (user.admin) {
-      this.router.navigate(['admin']);
+    if (!user.admin) {
+      this.router.navigate(['user']);
     }
 
     return true;

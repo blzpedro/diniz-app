@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { User } from 'src/app/models/user.interface';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { LoaderService } from 'src/app/services/loader.service';
 import { UserService } from 'src/app/services/user.service';
@@ -25,7 +26,8 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private utils: UtilsClass,
-    private loader: LoaderService
+    private loader: LoaderService,
+    private authenticationService: AuthenticationService
   ) { }
 
   ngOnInit() {
@@ -70,8 +72,12 @@ export class HomeComponent implements OnInit {
   }
 
   success() {
-    localStorage.setItem('accessToken', this.userWithToken.accessToken)
-    this.router.navigate(['/user'])
+    let accessToken = this.userWithToken.accessToken
+    localStorage.setItem('accessToken', accessToken)
+    let decodedAccessToken: User = this.authenticationService.decodeAccessToken(accessToken)
+    decodedAccessToken.admin ?
+      this.router.navigate(['/admin']) :
+      this.router.navigate(['/user'])
   }
 
   error(message: string) {
