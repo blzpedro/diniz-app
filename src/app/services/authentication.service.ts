@@ -21,7 +21,7 @@ export class AuthenticationService {
           return await this.userService.getUserById(user.uid)
         }
 
-        return of(null);
+        return null
       }),
     )
   }

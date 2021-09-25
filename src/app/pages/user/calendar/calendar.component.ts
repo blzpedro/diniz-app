@@ -41,7 +41,6 @@ export class CalendarComponent implements OnInit {
 
   logout() {
     this.firebaseService.logout()
-    localStorage.removeItem('user')
     this.router.navigate(['/'])
   }
 

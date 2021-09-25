@@ -1,8 +1,11 @@
 <div class="drawer">
     <mat-drawer-container class="drawer-container" autosize>  
         <mat-drawer #drawer class="drawer-sidenav" mode="side">
-            <a routerLink="/admin">Admin</a>
-            <a routerLink="management">Management</a>
+            <div class="d-flex flex-column">
+                <a routerLink="/admin">Admin</a>
+                <a routerLink="management">Management</a>
+                <a routerLink="">Sair</a>
+            </div>
         </mat-drawer>
         <div class="sidenav-content">
             <app-header (toggle)="drawer.toggle()"></app-header>
