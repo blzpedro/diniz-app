@@ -1,46 +1,51 @@
 <div class="schedule-box">
-    <mat-card>
+  <mat-card>
+    <mat-form-field appearance="fill" class="calendar-input">
+      <mat-label>Data:</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="date" (dateChange)="getScheduleList(date)">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <table mat-table [dataSource]="scheduleList" class="mat-elevation-z8 schedule-table w-100">
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>Data</th>
+        <td mat-cell *matCellDef="let element">{{element.date}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="hour">
+        <th mat-header-cell *matHeaderCellDef>Hora</th>
+        <td mat-cell *matCellDef="let element">{{element.hour}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="remove">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element" (click)="deleteSchedule(element.id)" class="delete"><i
+            class="fas fa-minus-circle delete-icon d-block mx-auto text-center"></i></td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <div class="d-flex align-items-center add-schedule mt-4">
+      <div class="d-flex align-items-center justify-content-around w-100">
         <mat-form-field appearance="fill" class="calendar-input">
-            <mat-label>Data:</mat-label>
-            <input matInput [matDatepicker]="picker" [value]="today">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+          <mat-label>Data:</mat-label>
+          <input matInput [matDatepicker]="picker" [(ngModel)]="date" (dateChange)="getScheduleList(date)" disabled>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
-          
-        <table mat-table [dataSource]="scheduleList" class="mat-elevation-z8 schedule-table w-100">   
-          
-            <ng-container matColumnDef="remove">
-              <th mat-header-cell *matHeaderCellDef></th>
-              <td mat-cell *matCellDef="let element" (click)="removeSchedule(element.id)" class="delete"><i class="fas fa-minus-circle delete-icon d-block mx-auto text-center"></i></td>
-            </ng-container>
 
-            <ng-container matColumnDef="date">
-              <th mat-header-cell *matHeaderCellDef>Data</th>
-              <td mat-cell *matCellDef="let element">{{element.date}}</td>
-            </ng-container>
-          
-            <ng-container matColumnDef="hour">
-              <th mat-header-cell *matHeaderCellDef>Hora</th>
-              <td mat-cell *matCellDef="let element">{{element.hour}}</td>
-            </ng-container>
+        <mat-form-field appearance="fill" class="calendar-input" style="margin-left: -20px;">
+          <mat-label>Hora:</mat-label>
+          <input matInput type="text" [(ngModel)]="hour">
+        </mat-form-field>
+      </div>
 
-            <ng-container matColumnDef="footer">
-                <td mat-footer-cell *matFooterCellDef colspan="3">
-                    <div class="d-flex justify-content-between add-schedule align-items-center">
-                        <i (click)="addSchedule()" class="fas fa-plus-circle add-icon"></i>
-                        <div class="schedule-input d-flex w-100">
-                            <input matInput disabled [value]="today | date:'dd/MM/yyyy'">
-                        </div>
-                        <div class="schedule-input w-100">
-                            <input matInput placeholder="Hora" type="text">
-                        </div>
-                    </div>
-                </td>
-            </ng-container>
-          
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            <tr mat-footer-row *matFooterRowDef="['footer']"></tr>
-        </table>
-    </mat-card>
+      <div style="padding: 0 20px">
+        <i (click)="createScheduleHour()" class="fas fa-plus-circle add-icon"></i>
+      </div>
+    </div>
+  </mat-card>
 </div>

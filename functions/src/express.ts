@@ -15,7 +15,7 @@ app.use(cors({ origin: true }));
 app.use(express.json());
 
 app.get('/teste', (req: any, res) => {
-  res.status(200).send({ res: 'Sucesso' });
+  res.status(200).send({ data: 'Sucesso' });
 });
 
 app.post('/generateAccessToken', ((req, res) => {
@@ -35,7 +35,7 @@ app.post('/createScheduleHour', decodeJWT, async (req: any, res) => {
     }
     const docId = date.split('/').join('-');
     const doc = await db.collection(schedulesCollection).doc(docId).collection(subSchedulesCollection).doc().create(schedule);
-    res.status(200).send({ res: 'Horário criado com sucesso.', doc });
+    res.status(200).send({ data: 'Horário criado com sucesso.', doc });
   }
 });
 
@@ -46,19 +46,19 @@ app.get('/getSchedulesByDate', decodeJWT, async (req: any, res) => {
   } else {
     const { date } = req.query;
     let doc = await db.collection(schedulesCollection).doc(date.split('/').join('-')).collection(subSchedulesCollection).get().then(d => d.docs.map(d => d.data()));
-    res.status(200).send({ res: doc });
+    res.status(200).send({ data: doc });
   }
 });
 
-app.delete('/deleteSchedule', decodeJWT, async (req: any, res) => {
+app.delete('/deleteScheduleHour', decodeJWT, async (req: any, res) => {
   const user = req.user;
   if (!user.admin) {
     res.status(401).send({ error: 'Usuário não autorizado.' });
   } else {
-    const { date, id } = req.body;
+    const { date, id } = req.query;
     let doc = await db.collection(schedulesCollection).doc(date.split('/').join('-')).collection(subSchedulesCollection).get().then(d => d.docs.map(d => d.data().id === id ? d.ref.delete() : null));
     doc.some(d => d != null) ?
-      res.status(200).send({ res: 'Horário deletado com sucesso.' }) : res.status(404).send({ error: 'Horário não encontrado.' });
+      res.status(200).send({ data: 'Horário deletado com sucesso.' }) : res.status(404).send({ error: 'Horário não encontrado.' });
   }
 });
 

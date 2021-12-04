@@ -18,9 +18,10 @@ import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { FirebaseService } from './services/firebase.service';
 import { ComponentsModule } from './components/components.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxMaskModule } from 'ngx-mask';
 import { HttpService } from './services/http.service';
+import { AuthInterceptor } from './services/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,11 @@ import { HttpService } from './services/http.service';
     NgxMaskModule.forRoot(),
   ],
   exports: [SharedModule],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, FirebaseService, HttpService],
+  providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    FirebaseService, HttpService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,6 @@
 .calendar-input {
+  width: 150px;
+
   ::ng-deep .mat-form-field-flex {
     align-items: center;
     padding: 0.5rem 0.75rem 0 0.75rem;
@@ -6,8 +8,12 @@
 }
 
 .schedule-table {
-  ::ng-deep tbody {
-    text-align: left;
+  ::ng-deep th {
+    text-align: center;
+  }
+
+  ::ng-deep td.mat-cell {
+    width: 150px;
   }
 }
 
@@ -30,10 +36,6 @@
     text-align: left;
     height: 50px;
     align-items: center;
-
-    input {
-      height: 100%
-    }
   }
 
   .add-icon {
