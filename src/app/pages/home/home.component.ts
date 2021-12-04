@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
 
   async onSubmit() {
     let { email, password, phone } = this.loginForm.value
-    let admin = true
+    let admin = false
     this.loader.show()
     try {
       if (this.signIn) {

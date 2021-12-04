@@ -4,7 +4,10 @@ import 'moment/locale/pt-br';
 
 moment.locale('pt-br');
 
-admin.initializeApp();
+admin.initializeApp({
+  credential: admin.credential.cert('src/diniz-barber-firebase-adminsdk.json'),
+  databaseURL: "https://diniz-barber-default-rtdb.firebaseio.com"
+});
 
 import { app } from './express';
 

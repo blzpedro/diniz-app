@@ -19,7 +19,8 @@
     "firebase-functions": "^3.15.5",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
-    "ts-polyfill": "^3.8.2"
+    "ts-polyfill": "^3.8.2",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.2",
